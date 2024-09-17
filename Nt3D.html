@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: linear-gradient(135deg, #FFDEE9, #B5FFFC); /* Nền gradient tươi sáng */
+        }
+        canvas {
+            display: block;
+        }
+        /* Định dạng cho chữ "H" và "e" */
+        #labelH, #labelE {
+            position: absolute;
+            color: black;
+            font-size: 24px;
+            font-weight: bold;
+            z-index: 1;
+        }
+        #labelH {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #labelE {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <!-- Vị trí của chữ "H" và "e" -->
+    <div id="labelH">H</div>
+    <div id="labelE">e</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // tạo cảnh trong 3D
+        const scene= new THREE.Scene();
+        // tạo camera
+        const camera= new  THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight,0.1,1000);
+        camera.position.z = 5;
+
+        // Tạo render để vẽ lên canvas
+
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0xffffff, 1); // Màu nền trắng
+        document.body.appendChild(renderer.domElement);
+        
+        // Thêm ánh sáng để làm nổi bật khối cầu
+        const ambientLight = new THREE.AmbientLight(0x404040); // Ánh sáng môi trường nhẹ
+        scene.add(ambientLight);
+
+        const pointLight = new THREE.PointLight(0xffffff, 1, 100);
+        pointLight.position.set(10, 10, 10);
+        scene.add(pointLight);
+
+        // Tạo hạt nhân (nucleus) là một khối cầu sáng
+        const nucleusGeometry = new THREE.SphereGeometry(0.5, 32, 32);
+        const nucleusMaterial = new THREE.MeshPhongMaterial({ color: 0xff5733 }); // Màu cam sáng
+        const nucleus = new THREE.Mesh(nucleusGeometry, nucleusMaterial);
+        scene.add(nucleus);
+
+        // Tạo quỹ đạo electron (electron orbit) dưới dạng một vòng tròn có độ nghiêng
+        const orbitGeometry = new THREE.TorusGeometry(1.5, 0.02, 16, 100); // Vòng tròn 3D để làm quỹ đạo
+        const orbitMaterial = new THREE.MeshBasicMaterial({ color: 0x0000ff });
+        const orbit = new THREE.Mesh(orbitGeometry, orbitMaterial);
+        orbit.rotation.x = Math.PI / 4; // Nghiêng quỹ đạo để dễ quan sát hơn
+        scene.add(orbit);
+
+        // Tạo electron là một khối cầu sáng
+        const electronGeometry = new THREE.SphereGeometry(0.2, 32, 32);
+        const electronMaterial = new THREE.MeshPhongMaterial({ color: 0xffff33 }); // Màu vàng sáng
+        const electron = new THREE.Mesh(electronGeometry, electronMaterial);
+        scene.add(electron);
+
+        // Cập nhật vị trí chữ "H" theo hạt nhân
+        const labelH = document.getElementById('labelH');
+        const labelE = document.getElementById('labelE');
+
+        // Hàm render để cập nhật khung hình và xoay electron
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Tạo quỹ đạo xoay cho electron quanh hạt nhân với độ nghiêng
+            const time = Date.now() * 0.002;
+            electron.position.x = Math.cos(time) * 1.5;
+            electron.position.y = Math.sin(time) * 1.5 * Math.sin(Math.PI / 4); // Điều chỉnh theo độ nghiêng của quỹ đạo
+            electron.position.z = Math.sin(time) * 1.5 * Math.cos(Math.PI / 4);
+
+            // Tính toán vị trí của electron và hạt nhân để gắn chữ "H" và "e"
+            const nucleusPosition = new THREE.Vector3();
+            nucleus.getWorldPosition(nucleusPosition);
+            const electronPosition = new THREE.Vector3();
+            electron.getWorldPosition(electronPosition);
+
+            // Cập nhật vị trí chữ "H" theo vị trí hạt nhân
+            const hPosition = nucleusPosition.project(camera);
+            labelH.style.left = ((hPosition.x + 1) / 2 * window.innerWidth) + 'px';
+            labelH.style.top = ((-hPosition.y + 1) / 2 * window.innerHeight) + 'px';
+
+            // Cập nhật vị trí chữ "e" theo vị trí electron
+            const ePosition = electronPosition.project(camera);
+            labelE.style.left = ((ePosition.x + 1) / 2 * window.innerWidth) + 'px';
+            labelE.style.top = ((-ePosition.y + 1) / 2 * window.innerHeight) + 'px';
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // Điều chỉnh kích thước khi cửa sổ thay đổi
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+    </script>
+    
+</body>
+</html>
