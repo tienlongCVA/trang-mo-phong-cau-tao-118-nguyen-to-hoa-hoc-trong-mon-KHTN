@@ -5,23 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TRANG MÔ PHỎNG 3D CẦU TẠO NGUYÊN TỬ TRONG BẢNG TUẦN HOÀN HÓA HỌC</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" type="image/jpg" href="/img/images.jpg"/>
 </head>
 <body>
     <header>
         <nav>
             <ul class="menu">
                 <!-- Add class vào thẻ a để đổi màu viền từng cái -->
-                <li><a class="vien-kim-loai-kiem" onclick="filterElements('p-alkali-metal')" href="#">Kim loại kiềm</a></li>
-                <li><a class="vien-kim-loai-tho" onclick="filterElements('p-kim-loai-tho')" href="#">Kim loại thổ</a></li>
-                <li><a class="vien-ho-lathan" onclick="filterElements('p-ho-lathan')" href="#">Họ Lathan</a></li>
-                <li><a class="vien-ho-actini" onclick="filterElements('p-ho-actini')" href="#">Họ Actini</a></li>
-                <li><a class="vien-kim-loai-chuyen-tiep" onclick="filterElements('p-kim-loai-chuyen-tiep')" href="#">Kim loại chuyển tiếp</a></li>
-                <li><a class="vien-kim-loai-khac" onclick="filterElements('p-kim-loai-khac')" href="#">Kim loại khác</a></li>
-                <li><a class="vien-a-kim" onclick="filterElements('p-a-kim')" href="#">Á kim</a></li>
-                <li><a class="vien-phi-kim" onclick="filterElements('p-phi-kim')" href="#">Phi kim</a></li>
-                <li><a class="vien-khi-hiem" onclick="filterElements('p-khi-hiem')" href="#">Khí hiếm</a></li>
-                <li><a class="vien-unknow" onclick="filterElements('p-unknow')" href="#">Unknown</a></li>
-                <li><a class="vien-unknow" onclick="filterElements('all')" href="#">All</a></li>
+                <li><a class="vien-kim-loai-kiem" onclick="filterElements('p-alkali-metal')" href="#">Bài Tập
+                <li><a class="vien-kim-loai-tho" onclick="filterElements('p-kim-loai-tho')" href="#">Video</a></li>
+                <li><a class="vien-ho-lathan" onclick="filterElements('p-ho-lathan')" href="#">Bảng xếp hạng</a></li>
+                <li><a class="vien-ho-actini" onclick="filterElements('p-ho-actini')" href="#">Thông tin cá nhân</a></li>
+                
             </ul>
         </nav>
     </header>
@@ -37,7 +32,24 @@
                 </div>
             </td>
             
-            <td class="hide-col" colspan="16"> </td>
+            <td class="hide-col" colspan="16"> 
+                <nav>
+                    <ul class="menu">
+                        <!-- Add class vào thẻ a để đổi màu viền từng cái -->
+                        <li><a class="vien-kim-loai-kiem" onclick="filterElements('p-alkali-metal')" href="#">Kim loại kiềm</a></li>
+                        <li><a class="vien-kim-loai-tho" onclick="filterElements('p-kim-loai-tho')" href="#">Kim loại thổ</a></li>
+                        <li><a class="vien-ho-lathan" onclick="filterElements('p-ho-lathan')" href="#">Họ Lathan</a></li>
+                        <li><a class="vien-ho-actini" onclick="filterElements('p-ho-actini')" href="#">Họ Actini</a></li>
+                        <li><a class="vien-kim-loai-chuyen-tiep" onclick="filterElements('p-kim-loai-chuyen-tiep')" href="#">Kim loại chuyển tiếp</a></li>
+                        <li><a class="vien-kim-loai-khac" onclick="filterElements('p-kim-loai-khac')" href="#">Kim loại khác</a></li>
+                        <li><a class="vien-a-kim" onclick="filterElements('p-a-kim')" href="#">Á kim</a></li>
+                        <li><a class="vien-phi-kim" onclick="filterElements('p-phi-kim')" href="#">Phi kim</a></li>
+                        <li><a class="vien-khi-hiem" onclick="filterElements('p-khi-hiem')" href="#">Khí hiếm</a></li>
+                        <li><a class="vien-unknow" onclick="filterElements('p-unknow')" href="#">Unknown</a></li>
+                        <li><a class="vien-unknow" onclick="filterElements('all')" href="#">All</a></li>
+                    </ul>
+                </nav>
+            </td>
             <td class="khi-hiem sheet-hover p-khi-hiem element" onclick="showElementDetails('Helium', 'He', 2, 4.0026)">
                 <div class="element-content">
                 <span class="element-number">2</span>

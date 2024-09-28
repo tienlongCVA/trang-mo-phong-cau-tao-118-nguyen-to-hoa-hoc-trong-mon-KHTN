@@ -32,14 +32,17 @@ header {
 .vien-kim-loai-kiem:hover{
     border: 2px solid rgb(255, 196, 0);
     border-radius: 5px;
+    color:  rgb(255, 196, 0);
 }
 .vien-kim-loai-tho:hover{
     border: 2px solid rgb(255, 251, 0);
     border-radius: 5px;
+    color: rgb(255, 251, 0);
 }
 .vien-ho-lathan:hover{
     border: 2px solid rgb(204, 0, 255);
     border-radius: 5px;
+    color:
 }
 .vien-ho-actini:hover{
     border: 2px solid rgb(119, 0, 255);
