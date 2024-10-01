@@ -42,7 +42,8 @@ header {
 .vien-ho-lathan:hover{
     border: 2px solid rgb(204, 0, 255);
     border-radius: 5px;
-    color:
+    color:rgb(204, 0, 255);
+
 }
 .vien-ho-actini:hover{
     border: 2px solid rgb(119, 0, 255);
@@ -176,6 +177,7 @@ h1 {
 .hide-col:hover{
     background-color: #ffffff00;
 }
+
 .modal {
     display: none;
     position: fixed;
